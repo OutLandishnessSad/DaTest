@@ -1,0 +1,31 @@
+import { createStore } from 'vuex'
+import axios from 'axios'
+
+export default createStore({
+  state: { //zde ukládáme data. Všechny komponenty mají přístup k datům zde
+    counter :0
+      
+  },
+  mutations: { //"methods" které mění data v "state". Jediné jak se data v "state" dají změnit je skrze "mutation"
+  //commit
+     increaseCounter(state) {
+       state.counter++
+     },
+     decreaseCounter(state) {
+       state.counter--
+     }          
+  },
+  actions: { //"methods" které nemohou měnit data v "state", ale mají k nim přístup
+  //dispatch
+   increaseCounter() {
+     console.log('increaseCounter (action)')
+     axios('https://www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new').then(response =>{
+     console.log('response: ', response)})
+   }
+  },
+  getters: { //předvod pro začátek
+
+  },
+  modules: { //dále rozděluje moduly na další sate, mutation, action, getters...
+  }
+})
